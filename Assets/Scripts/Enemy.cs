@@ -34,7 +34,26 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Evitar caer precipicio
+        //Para check si tenemos un objeto de tipo ground en alguna distancia
+        isGroundFloor=(Physics2D.Raycast(new Vector3(transform.position.x,transform.position.y-floorCheckY,transform.position.z), 
+                                        new Vector3(movHor,0,0),frontGrndRayDist,groundLayer));
+            //Que el enemigo se devuelva
+        if(!isGroundFloor)
+            movHor=movHor * -1;
+
+        //Choque con pared
+        if(Physics2D.Raycast(transform.position, new Vector3(movHor,0,0),frontCheck,groundLayer))
+            movHor=movHor * -1;
+
+        //Choque con otro enemigo
+        hit=(Physics2D.Raycast(new Vector3(transform.position.x+movHor*frontCheck,transform.position.y,transform.position.z),
+                            new Vector3(movHor,0,0),frontDist));
         
+        if(hit)
+            if(hit.transform!=null)
+                if(hit.transform.CompareTag("Enemy"))
+                    movHor=movHor * -1;
     }
 
     void FixedUpdate()
