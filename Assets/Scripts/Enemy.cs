@@ -61,6 +61,26 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector2(movHor * speed, rb.velocity.y);
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Dañar Player si colisiona directamente
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Daño Personaje");
+        }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Destruir Enemy si colisiona por arriba, para esto se crea un box colider extra en unity
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            getKilled();
+        }
+
+    }
+
     void getKilled()
     {
         gameObject.SetActive(false);
