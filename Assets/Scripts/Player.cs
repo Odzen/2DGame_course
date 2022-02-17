@@ -56,8 +56,12 @@ public class Player : MonoBehaviour
         //Si nuestro personaje está tocando el piso
         isGrounded = Physics2D.CircleCast(transform.position, radious, Vector3.down, groundRayDist, groundLayer);
 
+        //jump
         if (Input.GetKeyDown(KeyCode.Space))
             jump();
+
+        //Cambiar animación de personaje dependiendo de para donde yo lo mueva
+        flip(movHor); 
     }
 
     //Todo lo que tenga que ver con fisicas
@@ -75,7 +79,20 @@ public class Player : MonoBehaviour
 
         //Agregar fuerza hacia arriba mediante su rigid body
         rb.velocity = Vector2.up * jumpForce;
+    }
+    
+    //Para cambiar las animaciones dependiendo de la direccion en la que me muevo
+    public void flip(float _xValue)
+    {
+        Vector3 theScale = transform.localScale;
 
+        if (_xValue < 0)
+            theScale.x = Mathf.Abs(theScale.x) * -1;
+        else
+        if (_xValue>0)
+            theScale.x = Mathf.Abs(theScale.x);
+
+        transform.localScale = theScale;
     }
 
 
