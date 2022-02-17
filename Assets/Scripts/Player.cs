@@ -59,6 +59,10 @@ public class Player : MonoBehaviour
         //jump
         if (Input.GetKeyDown(KeyCode.Space))
             jump();
+        
+        //enviar variables al animator
+        anim.SetBool("isMoving",isMoving);
+        anim.SetBool("isGrounded",isGrounded);
 
         //Cambiar animación de personaje dependiendo de para donde yo lo mueva
         flip(movHor); 
