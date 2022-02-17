@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         //Dañar Player si colisiona directamente
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Daño Personaje");
+            Player.obj.getDamaged();
         }
 
     }
