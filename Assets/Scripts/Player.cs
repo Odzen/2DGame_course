@@ -55,6 +55,9 @@ public class Player : MonoBehaviour
         isMoving = (movHor != 0);
         //Si nuestro personaje está tocando el piso
         isGrounded = Physics2D.CircleCast(transform.position, radious, Vector3.down, groundRayDist, groundLayer);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            jump();
     }
 
     //Todo lo que tenga que ver con fisicas
@@ -63,6 +66,16 @@ public class Player : MonoBehaviour
         //Usar el rb que es el rigidbody con el input de movimiento horizontal, movHor
         //velocity acepta como entrada un Vector2: Conjunto de valores x e y
         rb.velocity = new Vector2(movHor * speed, rb.velocity.y);
+    }
+
+    public void jump()
+    {
+        //Si no esta tocando el piso, entonces retorna nada
+        if (!isGrounded) return;
+
+        //Agregar fuerza hacia arriba mediante su rigid body
+        rb.velocity = Vector2.up * jumpForce;
+
     }
 
 
