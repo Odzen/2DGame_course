@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Game.obj.gamePaused)
+        {
+            return;
+        }
+
         //Evitar caer precipicio
         //Para check si tenemos un objeto de tipo ground en alguna distancia
         isGroundFloor=(Physics2D.Raycast(new Vector3(transform.position.x,transform.position.y-floorCheckY,transform.position.z), 

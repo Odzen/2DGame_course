@@ -51,6 +51,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Game.obj.gamePaused)
+        {
+            movHor=0f;
+            return;
+        }
         movHor = Input.GetAxisRaw("Horizontal");
         isMoving = (movHor != 0);
         //Si nuestro personaje está tocando el piso
@@ -126,6 +131,7 @@ public class Player : MonoBehaviour
     {
         lives--;
         AudioManager.obj.playHit();
+        UIManajer.obj.updateLives();
         goInmune();
         if(lives<=0)
         {

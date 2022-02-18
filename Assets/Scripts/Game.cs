@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         gamePaused=false;
+        UIManajer.obj.startGame();
     }
 
     public void addScored(int scoreGive)
