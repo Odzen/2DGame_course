@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
         //Destruir Enemy si colisiona por arriba, para esto se crea un box colider extra en unity
         if(collision.gameObject.CompareTag("Player"))
         {
+            AudioManager.obj.playEnemyHit();
             getKilled();
         }
 

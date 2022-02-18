@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
 
         //Agregar fuerza hacia arriba mediante su rigid body
         rb.velocity = Vector2.up * jumpForce;
+        AudioManager.obj.playJump();
     }
     
     //Para cambiar las animaciones dependiendo de la direccion en la que me muevo
@@ -102,6 +103,7 @@ public class Player : MonoBehaviour
     public void getDamaged()
     {
         lives--;
+        AudioManager.obj.playHit();
         if(lives<=0)
         {
             FxManager.obj.showPop(transform.position);
