@@ -60,6 +60,21 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             jump();
         
+        //Si es inmune, hacer que el sprite parpadee por un tiempo
+        
+        if(isInmune)
+        {
+            spr.enabled= !spr.enabled;
+            inmuneTimeCnt -= Time.deltaTime;
+
+            if(inmuneTimeCnt<=0)
+            {
+                isInmune=false;
+                spr.enabled=true;
+            }
+
+        }
+        
         //enviar variables al animator
         anim.SetBool("isMoving",isMoving);
         anim.SetBool("isGrounded",isGrounded);
@@ -74,6 +89,13 @@ public class Player : MonoBehaviour
         //Usar el rb que es el rigidbody con el input de movimiento horizontal, movHor
         //velocity acepta como entrada un Vector2: Conjunto de valores x e y
         rb.velocity = new Vector2(movHor * speed, rb.velocity.y);
+    }
+
+    private void goInmune()
+    {
+        isInmune=true;
+        inmuneTimeCnt=inmuneTime;
+
     }
 
     public void jump()
@@ -104,6 +126,7 @@ public class Player : MonoBehaviour
     {
         lives--;
         AudioManager.obj.playHit();
+        goInmune();
         if(lives<=0)
         {
             FxManager.obj.showPop(transform.position);
