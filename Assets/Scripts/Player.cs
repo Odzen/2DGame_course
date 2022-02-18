@@ -103,7 +103,10 @@ public class Player : MonoBehaviour
     {
         lives--;
         if(lives<=0)
-            this.gameObject.SetActive(false);
+        {
+            FxManager.obj.showPop(transform.position);
+            Game.obj.gameOver();
+        }
     }
 
     public void addLive()

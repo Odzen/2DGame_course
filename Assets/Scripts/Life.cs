@@ -12,6 +12,8 @@ public class Life : MonoBehaviour
         {
             Game.obj.addScored(scoreGive);
             Player.obj.addLive();
+            
+            FxManager.obj.showPop(transform.position);
             gameObject.SetActive(false);
         }
     } 

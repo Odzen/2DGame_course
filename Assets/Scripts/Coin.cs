@@ -12,6 +12,8 @@ public class Coin : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             Game.obj.addScored(scoreGive);
+
+            FxManager.obj.showPop(transform.position);
             gameObject.SetActive(false);
 
         }

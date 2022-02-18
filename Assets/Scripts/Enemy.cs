@@ -83,6 +83,7 @@ public class Enemy : MonoBehaviour
 
     void getKilled()
     {
+        FxManager.obj.showPop(transform.position);
         gameObject.SetActive(false);
     }
 }
